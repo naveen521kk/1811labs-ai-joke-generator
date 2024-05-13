@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { generateJoke } from "./actions";
+import { SignOutButton } from "@clerk/nextjs";
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,7 +29,7 @@ export default function Home() {
           setJoke(joke || "Failed to generate a joke");
           setLoading(false);
         }}
-        className="mt-5"
+        className="mt-5 space-y-5"
       >
         <div className="flex w-full items-center space-x-2 ">
           <Input
@@ -45,6 +46,10 @@ export default function Home() {
           {joke ? <p>{joke}</p> : <></>}
           {loading && <p>Generating a joke...</p>}
         </div>
+
+        <SignOutButton>
+          <Button>Sign out</Button>
+        </SignOutButton>
       </form>
     </main>
   );
